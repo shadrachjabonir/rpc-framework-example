@@ -7,10 +7,12 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 import java.util.*;
 
+@Component
 public class DirectServerConfig implements BeanDefinitionRegistryPostProcessor {
 
     private String serviceNameFormater(String className) {
@@ -67,6 +69,7 @@ public class DirectServerConfig implements BeanDefinitionRegistryPostProcessor {
             bd.getPropertyValues()
                     .add("service", exporter.getService())
                     .add("serviceInterface", exporter.getServiceInterface());
+            bd.setLazyInit(true);
             registry.registerBeanDefinition(pair.getKey().toString(), bd);
             it.remove(); // avoids a ConcurrentModificationException
         }

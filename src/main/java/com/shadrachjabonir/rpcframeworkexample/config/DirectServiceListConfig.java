@@ -7,19 +7,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-//@Configuration
+@Configuration
 public class DirectServiceListConfig {
 
-//    @Bean
+    @Bean
     TestService testService() {
         return new TestServiceImpl();
     }
 
-//    @Bean(name = "/test")
-//    public HttpInvokerServiceExporter invoker() {
-//        HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
-//        exporter.setService( new TestServiceImpl() );
-//        exporter.setServiceInterface( TestService.class );
-//        return exporter;
-//    }
 }

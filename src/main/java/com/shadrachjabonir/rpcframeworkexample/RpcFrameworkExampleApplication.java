@@ -1,23 +1,35 @@
 package com.shadrachjabonir.rpcframeworkexample;
 
+import com.shadrachjabonir.rpcframeworkexample.config.FrameworkConfig;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
+import org.springframework.amqp.remoting.service.AmqpInvokerServiceExporter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan
-@EnableAutoConfiguration
+//@EnableAutoConfiguration
 @SpringBootApplication
 public class RpcFrameworkExampleApplication {
+//    @Autowired
+//    FrameworkConfig frameworkConfig;
 
     public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
-       ApplicationContext ac = SpringApplication.run(RpcFrameworkExampleApplication.class, args);
-
+        ApplicationContext ac = SpringApplication.run(RpcFrameworkExampleApplication.class, args);
+//        System.out.println(ac.getBean(org.springframework.amqp.rabbit.connection.ConnectionFactory.class).toString());
         String[] allBeanNames = ac.getBeanDefinitionNames();
-		for(String beanName : allBeanNames) {
-			System.out.println(beanName);
-		}
+        for (String beanName : allBeanNames) {
+            System.out.println(beanName);
+        }
+//        System.out.println(((AmqpTemplate)ac.getBean(org.springframework.amqp.rabbit.core.RabbitTemplate.class)).toString());
 //        System.out.println("======================================");
 //        BeanDefinitionRegistryPostProcessor beanDefinitionRegistryPostProcessor;
 //        Collection<Method> found = new ArrayList<Method>();
